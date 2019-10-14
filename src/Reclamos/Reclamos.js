@@ -24,13 +24,6 @@ class Reclamos extends Component {
                 alert("Error en API " + error);
             });
     }
-
-    /*async componentDidMount() {
-        const url = "http://localhost:8080/ar/VerTodosLosReclamos/";
-        const response = await fetch(url)
-        const data = await response.json();
-        console.log(data);
-    }    */
     
     handlerClickItem(id) {
         this.props.history.push('/reclamo/' + id)
@@ -48,10 +41,15 @@ class Reclamos extends Component {
                     <ul className="listReclamos">
                         {
                             reclamos.map(item => (
-                                <li key = {item.id}>
-                                    {item.id+" "}
-                                    {item.descripcion}
-                                    {item.estado}
+                                <li 
+                                    key = {item.id}
+                                    onClick={this.handlerClickItem.bind(this, item.id)}
+                                >
+                                    <br></br>
+                                        {item.id}{" "}
+                                        {item.estado}{" "}
+                                        {item.fecha}
+                                    <br></br>
                                 </li>
                             ))
                         }
