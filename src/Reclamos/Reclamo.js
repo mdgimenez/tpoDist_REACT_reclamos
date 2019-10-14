@@ -27,7 +27,6 @@ class Reclamo extends Component {
                 reclamo: result
             });
         }).catch(error => {
-            
             alert(error);
         });
     }
@@ -44,15 +43,25 @@ class Reclamo extends Component {
                     <h2 className = "selectedReclamo">
                         Detalle de reclamo: "{this.props.match.params.id}"
                     </h2>
-                        Documento: {reclamo.documentoPersona}<p></p>
-                        Codigo de edificio: {reclamo.codigoEdificio}<p></p>
-                        Piso: {reclamo.piso}<p></p>
+                        Persona: {reclamo.persona}<p></p>
+                        Edificio: {reclamo.edificio}<p></p>
+                        Piso: N° {reclamo.piso}<p></p>
                         Ubicacion: {reclamo.ubicacion}<p></p>
                         Descripcion: {reclamo.descripcion}<p></p>
                         Estado: {reclamo.estado}<p></p>
                         Fecha: {reclamo.fecha}<p></p>
-                        Imagen/es: TO DO
-                    
+                        Imagen/es: 
+                        <p></p>
+                        {
+                            reclamo.imagenes.map(item => (
+                                <img 
+                                    key={item.numero} 
+                                    src={`data:image/${item.tipo};base64,${item.binary}`} 
+                                    style={{width: 500, height: 500}} 
+                                    alt="Imagen" 
+                                />
+                            ))
+                        }
                     <p></p>
                     <form>
                         <label>

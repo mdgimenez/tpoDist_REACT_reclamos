@@ -46,9 +46,9 @@ class Reclamos extends Component {
                                     onClick={this.handlerClickItem.bind(this, item.id)}
                                 >
                                     <br></br>
-                                        {item.id}{" "}
-                                        {item.estado}{" "}
-                                        {item.fecha}
+                                        Numero de reclamo:{" "}{item.id}{" "}
+                                        Estado:{" "}{item.estado}{" "}
+                                        Fecha de reclamo:{" "}{item.fecha}{" "}
                                     <br></br>
                                 </li>
                             ))
