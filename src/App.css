@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App-logo {
+  height: 40vmin;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -15,20 +19,4 @@
 
 .App-link {
   color: #09d3ac;
-}
-
-.listReclamos {
-  font-family: arial;
-  font-size: 12pt;
-  font-weight: bold;
-  color: blue;
-  border: 1 px solid #ccc;
-  list-style-type: none;
-}
-
-.selectedReclamo {
-  font-family: arial;
-  font-size: 12pt;
-  font-weight: bold;
-  color: blue;
 }
