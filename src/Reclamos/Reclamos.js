@@ -47,7 +47,6 @@ class Reclamos extends Component {
                                 >
                                     <br></br>
                                         Numero de reclamo:{" "}{item.id}{" "}
-                                        Titulo:{" "}{item.titulo}{" "}
                                         Estado:{" "}{item.estado}{" "}
                                         Fecha de reclamo:{" "}{item.fecha}{" "}
                                     <br></br>
