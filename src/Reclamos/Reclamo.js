@@ -63,13 +63,6 @@ class Reclamo extends Component {
                             ))
                         }
                     <p></p>
-                    <form>
-                        <label>
-                            Name:
-                            <input type="text" name="name" />
-                        </label>
-                            <input type="submit" value="Submit" />
-                    </form>
                     <Link to = "/reclamos">Volver</Link>
                 </div>
             );
