@@ -4,8 +4,7 @@ import MenuInicioSesion from './MenuInicioSesion.js';
 
 class LoginUsuario extends Component{
 
- 
-   onSubmit=(e)=> {console.log(this.state)
+    onSubmit=(e)=> {console.log(this.state)
                     e.preventDefault();
                      window.location.href = "/home";
                 } 
@@ -15,7 +14,6 @@ class LoginUsuario extends Component{
         numeroDoc:'',
         usuario: '',
         password: '',
-        
     }
 
 

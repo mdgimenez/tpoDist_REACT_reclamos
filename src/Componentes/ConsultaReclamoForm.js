@@ -30,8 +30,6 @@ class ConsultaReclamoForm extends Component {
         
     } 
 
-
-
     render(){
         return(
             <>
