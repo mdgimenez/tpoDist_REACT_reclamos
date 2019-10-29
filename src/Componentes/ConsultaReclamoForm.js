@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import Menu from './Menu.js';
 import ReclamosList from './ReclamosList.js'
 
-
 class ConsultaReclamoForm extends Component {
     constructor(props) {
         super(props);
