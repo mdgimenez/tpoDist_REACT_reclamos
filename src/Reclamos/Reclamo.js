@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 
 class Reclamo extends Component {
 
@@ -12,14 +11,8 @@ class Reclamo extends Component {
     }
 
     async componentDidMount() {
-
-        await fetch('http://localhost:8080/ar/VerReclamo?id=' + this.props.match.params.id, {
-            method: 'GET',
-         //   headers: {
-         //       'Accept': 'application/json',
-         //       'Content-Type': 'application/json'
-         //   },
-         //   body: JSON.stringify({ idReclamo: this.props.match.params.id })
+        await fetch('http://localhost:8080/ar/VerReclamo?id=' + this.props.match.params.idReclamo, {
+            method: 'GET'
         }).then(response => response.json() )
         .then(result => {
             this.setState({
@@ -31,9 +24,17 @@ class Reclamo extends Component {
         });
     }
 
+    onGoReclamos = () => {
+        this.props.history.push('/reclamos/' + this.props.match.params.id);
+    }
+
+    onGoHome = () => {
+        this.props.history.push('/home/' + this.props.match.params.id);
+    }
+
     render() {
-        var {isLoaded, reclamo} = this.state;
-       
+        var { isLoaded, reclamo } = this.state;
+
         if(!isLoaded) {
             return <div>Loading...</div>
         }
@@ -41,7 +42,7 @@ class Reclamo extends Component {
             return (
                 <div>
                     <h2 className = "selectedReclamo">
-                        Detalle de reclamo: "{this.props.match.params.id}"
+                        Detalle de reclamo: "{this.props.match.params.idReclamo}"
                     </h2>
                         Persona: {reclamo.persona}<p></p>
                         Edificio: {reclamo.edificio}<p></p>
@@ -62,15 +63,15 @@ class Reclamo extends Component {
                                 />
                             ))
                         }
-                    <p></p>
-                    <form>
-                        <label>
-                            Name:
-                            <input type="text" name="name" />
-                        </label>
-                            <input type="submit" value="Submit" />
-                    </form>
-                    <Link to = "/reclamos">Volver</Link>
+                    
+                    <div>
+                        <button className="btn btn-primary" onClick={this.onGoReclamos}>Volver a los Reclamos</button>
+                    </div>
+
+                    <div>
+                        <button className="btn btn-primary" onClick={this.onGoHome}>Volver al Home</button>
+                    </div>
+                
                 </div>
             );
         }

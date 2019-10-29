@@ -4,6 +4,7 @@ import './App.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 import Home from './Home/Home'
+import AutenticarUsuarioForm from './Usuarios/AutenticarUsuarioForm';
 import AltaUsuarioForm from './Usuarios/AltaUsuarioForm';
 import AltaReclamoForm from './Reclamos/AltaReclamoForm';
 import Reclamos from './Reclamos/Reclamos';
@@ -14,11 +15,12 @@ function App() {
     <div className="App">
       <Router>
         <Route exact path = "/" component = {Home} />
-        <Route path = "/home" component = {Home} />
+        <Route path = "/home/:id" component = {Home} />
+        <Route path = "/authUsuario" component = {AutenticarUsuarioForm} />
         <Route path = "/altaUsuario" component = {AltaUsuarioForm} />
-        <Route path = "/altaReclamo" component = {AltaReclamoForm} />
-        <Route path = "/reclamos" component = {Reclamos} />
-        <Route path = "/reclamo/:id" component = {Reclamo} />
+        <Route path = "/altaReclamo/:id" component = {AltaReclamoForm} />
+        <Route path = "/reclamos/:id" component = {Reclamos} />
+        <Route path = "/id/:id/reclamo/:idReclamo" component = {Reclamo} />
       </Router>
     </div>
   );
