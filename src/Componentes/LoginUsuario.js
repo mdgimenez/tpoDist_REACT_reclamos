@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import MenuInicioSesion from './MenuInicioSesion.js';
-//import
+//import ...
 
 
 class LoginUsuario extends Component{
