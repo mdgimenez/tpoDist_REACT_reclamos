@@ -16,12 +16,13 @@ class AltaReclamoForm extends Component {
             lugar: 'Seleccione...',
             piso: 'Planta Baja',
             unidad: 0,
-            imagenes: {
+            imagen: {
                 numero: 0,
                 binary: [],
                 tipo: '',
                 idReclamo: 0
-            }
+            },
+            imagenes: []
         }
     }
 
@@ -93,17 +94,23 @@ class AltaReclamoForm extends Component {
         if (files && file) {
             var reader = new FileReader();
             reader.onload = (e) => {
-                var binaryString = e.target.result;
-                this.setState({imagenes: {byte: btoa(binaryString)}});
+                this.setState({
+                    imagen: 
+                    {
+                        numero: 0,
+                        byte: btoa(e.target.result),
+                        tipo: file.type,
+                        idReclamo: 0
+                    }
+                });
             };
-            this.setState({imagenes: {tipo: file.type}});
             reader.readAsBinaryString(file);
         }
     }
 
     onSubmit= async (e) => {
         e.preventDefault();
-        var { titulo, descripcion, lugar, edificioId, piso, unidad } = this.state;
+        var { titulo, descripcion, lugar, edificioId, piso, unidad, imagen } = this.state;
         await fetch('http://localhost:8080/ar/AltaReclamo', {
             method: 'POST',
             headers: {
@@ -119,7 +126,8 @@ class AltaReclamoForm extends Component {
                 titulo,
                 descripcion, 
                 estado: 'Pendiente',
-                idUnidad: unidad
+                idUnidad: unidad,
+                imagenes: [imagen]
             }),
         }).then(response => response.json() )
         .then(result => {
