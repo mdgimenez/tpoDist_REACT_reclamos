@@ -1,26 +1,28 @@
 import React from 'react';
 import './App.css';
-
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
-import Home from './Home/Home'
-import AutenticarUsuarioForm from './Usuarios/AutenticarUsuarioForm';
-import AltaUsuarioForm from './Usuarios/AltaUsuarioForm';
-import AltaReclamoForm from './Reclamos/AltaReclamoForm';
-import Reclamos from './Reclamos/Reclamos';
-import Reclamo from './Reclamos/Reclamo';
+import Home from './Componentes/Home'
+import AltaReclamoForm from './Componentes/AltaReclamoForm';
+import LoginUsuario from './Componentes/LoginUsuario'; //Ver fomulario de login
+import ConsultaReclamoForm from './Componentes/ConsultaReclamoForm';
+import ReclamosList from './Componentes/ReclamosList'; //Ver lista de reclamos
+
+import Reclamo from './Reclamos/Reclamo'; //Ver Reclamo determinado
+//import Reclamos from './Reclamos/Reclamos'; //Ver listado con los reclamos
+
 
 function App() {
   return (
     <div className="App">
+      
       <Router>
-        <Route exact path = "/" component = {Home} />
-        <Route path = "/home/:id" component = {Home} />
-        <Route path = "/authUsuario" component = {AutenticarUsuarioForm} />
-        <Route path = "/altaUsuario" component = {AltaUsuarioForm} />
-        <Route path = "/altaReclamo/:id" component = {AltaReclamoForm} />
-        <Route path = "/reclamos/:id" component = {Reclamos} />
-        <Route path = "/id/:id/reclamo/:idReclamo" component = {Reclamo} />
+        <Route exact path = "/" component = {LoginUsuario} />
+        <Route path = "/home" component = {Home} />
+        <Route path = "/altaReclamo" component = {AltaReclamoForm} />
+        <Route path = "/reclamos" component = {ConsultaReclamoForm} />
+        <Route path = "/reclamo/:id" component = {Reclamo} />
+        <Route path = "/authUsuario" component = {LoginUsuario} />
       </Router>
     </div>
   );
