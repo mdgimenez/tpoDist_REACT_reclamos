@@ -103,6 +103,7 @@ class AltaReclamoForm extends Component {
                         tipo: file.type
                     }
                 });
+                this.setState({ imagenes: this.state.imagenes.concat(this.state.imagen) });
             };
             reader.readAsBinaryString(file);
         }
@@ -110,7 +111,7 @@ class AltaReclamoForm extends Component {
 
     onSubmit= async (e) => {
         e.preventDefault();
-        var { titulo, descripcion, lugar, edificioId, piso, unidad, imagen } = this.state;
+        var { titulo, descripcion, lugar, edificioId, piso, unidad, imagenes } = this.state;
         await fetch('http://localhost:8080/ar/AltaReclamo', {
             method: 'POST',
             headers: {
@@ -130,29 +131,22 @@ class AltaReclamoForm extends Component {
             }),
         }).then(response => response.json() )
         .then(result => {
-            this.setState({
-                imagen: 
-                    {
-                        ...this.state.imagen,
-                        idReclamo: result
-                    }
-            })
             alert(`Su numero de reclamo es N°${result}`);
+            if(imagenes.length > 0) {
+                this.onSubmitImagen(e, result);
+            }
+            else {
+                this.props.history.push('/reclamos/' + this.props.match.params.id)
+            }
         }).catch(error => {
             alert(error);
         })
-        if(imagen.tipo !== '') {
-            this.onSubmitImagen(e);
-        }
-        else {
-            this.props.history.push('/reclamos/' + this.props.match.params.id)
-        }
     }
 
-    onSubmitImagen = async(e) => {
-        e.preventDefault();
-        var { imagen } = this.state;
-        await fetch('http://localhost:8080/ar/GuardarImagen', {
+    onSubmitImagen = async(e, idReclamo) => {
+        var { imagenes } = this.state;
+        imagenes.map(item => (
+            fetch('http://localhost:8080/ar/GuardarImagen', {
                 method: 'POST',
                 headers: {
                 'Accept': 'application/json',
@@ -160,21 +154,22 @@ class AltaReclamoForm extends Component {
                 },
                 body: JSON.stringify({ 
                     numero: 0,
-                    binary: imagen.binary,
-                    tipo: imagen.tipo,
-                    idReclamo: imagen.idReclamo
+                    binary: item.binary,
+                    tipo: item.tipo,
+                    idReclamo: idReclamo
                 }),
             }).then(
                 alert('Imagen subida con éxito'),
                 this.props.history.push('/reclamos/' + this.props.match.params.id)
-                )
+            )
             .catch(error => {
                 alert(error);
             })
+        ))
     }
 
     render(){
-        var { isLoaded, edificios, lugar, edificioId, piso, unidad, titulo, descripcion } = this.state;
+        var { isLoaded, edificios, lugar, edificioId, piso, unidad, titulo, descripcion, imagenes } = this.state;
         
         if(!isLoaded) {
             return <div>Loading...</div>
@@ -248,6 +243,7 @@ class AltaReclamoForm extends Component {
                             <input type="file" id="InputImagen" onChange={this.onChangeImagen} />
                             <br></br>
                             <small id="fileHelp" className="form-text text-muted">Recomendación: adjuntar foto en donde se vea el desperfecto para poder brindarle una solución más rápida.</small>
+                            <small>Usted a seleccionado: {imagenes.length} imagen/es</small>
                         </div> 
 
                         <div className="form-group">

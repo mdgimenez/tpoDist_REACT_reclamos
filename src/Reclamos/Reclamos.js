@@ -68,7 +68,7 @@ class Reclamos extends Component {
 
                     </div>
                     
-                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <table className="table table-bordered table-responsive-md table-striped text-center">
                         {/*Cabecera*/}
                         <thead className="table-primary">
                             <tr>

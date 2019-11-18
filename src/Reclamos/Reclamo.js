@@ -42,7 +42,7 @@ class Reclamo extends Component {
 
                     <h1>Reclamo N°: "{this.props.match.params.idReclamo}"</h1>
 
-                    <table class="table table-bordered table-responsive-md table-striped text-center">
+                    <table className="table table-bordered table-responsive-md table-striped text-center">
                         {/*Cabecera*/}
                         <thead className="table-primary">
                             <tr>
